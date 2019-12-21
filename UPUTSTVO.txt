@@ -1,0 +1,45 @@
+https://www.youtube.com/watch?v=Bo0guUbL5uo&feature=share
+
+Symfony PHP Framework Tutorial - Full Course
+
+⌨️ (0:03:50) Installing the development tools
+⌨️ (0:15:54) Installing Symfony
+Composer install:
+https://www.ionos.com/community/hosting/php/install-and-use-php-composer-on-ubuntu-1604/
+sudo apt-get update
+sudo apt-get install curl
+sudo curl -s https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+composer //v1.9.1
+composer create-project symfony/skeleton sfcourse // var/www/html/sfcourse
+http://localhost/sfcourse/public/
+
+⌨️ (0:25:08) Console
+php bin/console //lista komandi
+
+⌨️ (0:25:00) Generating a controller
+composer require make
+composer require doctrine/annotations
+php bin/console make:controller MainController //^^^
+http://localhost/sfcourse/public/index.php/main
+
+⌨️ (0:30:55) Routing
+http://localhost/sfcourse/public/index.php/custom
+composer require dump // vec postoji
+
+⌨️ (0:44:37) Using the Symfony Server
+⌨️ (0:51:50) Twig
+⌨️ (1:08:00) Doctrine
+⌨️ (1:49:37) Flash messages
+⌨️ (1:52:58) Symfony bug
+⌨️ (2:09:41) Security
+⌨️ (2:20:16) Registration page
+⌨️ (2:39:39) More doctrine & Relationships
+⌨️ (2:40:07) File uploading
+⌨️ (2:47:55) Defining custom parameters
+⌨️ (2:53:23) Doctrine relationship
+⌨️ (3:03:35) QueryBuilder
+⌨️ (3:11:49) Services
+
+
+
