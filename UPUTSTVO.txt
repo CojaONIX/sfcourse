@@ -28,6 +28,16 @@ http://localhost/sfcourse/public/index.php/custom
 composer require dump // vec postoji
 
 ⌨️ (0:44:37) Using the Symfony Server
+composer require server
+// Daje gresku:
+// Could not find package symfony/web-server-bundle in a version matching 5.0.*
+
+// Zato u PHPStorm - Terminal:
+export PATH="$HOME/.symfony/bin:$PATH"
+echo "7.3" > .php-version
+symfony server:start
+https://localhost:8000/custom
+
 ⌨️ (0:51:50) Twig
 ⌨️ (1:08:00) Doctrine
 ⌨️ (1:49:37) Flash messages

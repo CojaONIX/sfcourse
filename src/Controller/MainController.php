@@ -30,8 +30,10 @@ class MainController extends AbstractController
      * @return Response
      */
     public function custom(Request $request) {
-        dump($request);
+        //dump($request);
+        //dump($request->get( 'name'));
+        $name = $request->get( 'name');
         //http://localhost/sfcourse/public/index.php/custom
-        return new Response('<h1>Custom page! </h1>');
+        return new Response('<h1>Welcome ' . $name .'! </h1>');
     }
 }
