@@ -14,8 +14,10 @@ class MainController extends AbstractController
      */
     public function index()
     {
+        return $this->render('home/index.html.twig');
+
         // !!! Response [Symfony\Component\HttpFoundation\]
-        return new Response('<h1>Welcome freeCodeCamp!</h1>');
+        //return new Response('<h1>Welcome freeCodeCamp!</h1>');
 
         // Generisano posle kreiranja kontrolera zajedno sa ("/main", name="main")
         //return $this->json([
@@ -33,6 +35,12 @@ class MainController extends AbstractController
         //dump($request);
         //dump($request->get( 'name'));
         $name = $request->get( 'name');
+
+        // twig
+        return $this->render('home/custom.html.twig', [
+            'name' => $name
+        ]);
+
         //http://localhost/sfcourse/public/index.php/custom
         return new Response('<h1>Welcome ' . $name .'! </h1>');
     }

@@ -36,9 +36,20 @@ composer require server
 export PATH="$HOME/.symfony/bin:$PATH"
 echo "7.3" > .php-version
 symfony server:start
+
 https://localhost:8000/custom
 
 ⌨️ (0:51:50) Twig
+composer require template
+U templates dodaj dir home a u njemu fajlove
+index.html.twig
+custom.html.twig
+
+⌨️ (0:59:00) Bootstrap
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+// Navbar:
+https://getbootstrap.com/docs/4.0/components/navbar/
+
 ⌨️ (1:08:00) Doctrine
 ⌨️ (1:49:37) Flash messages
 ⌨️ (1:52:58) Symfony bug
