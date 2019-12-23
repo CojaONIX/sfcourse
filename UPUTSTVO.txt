@@ -51,6 +51,29 @@ custom.html.twig
 https://getbootstrap.com/docs/4.0/components/navbar/
 
 ⌨️ (1:08:00) Doctrine
+//sacekaj jer duze traje
+composer require orm // orm jer ih u flex ima puno sa doctrine
+U .env izmeni podatke za bazu:
+DATABASE_URL=mysql://root:root@127.0.0.1:3306/sfcourse
+
+// Kreiranje baze
+php bin/console doctrine:database:create //ako ne radi damo privilegije:
+phpMyAdmin -> baza mysql -> sql upit:
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root' WITH GRANT OPTION;
+
+// Kreiranje tabele
+php bin/console make:entity //prati ponudjeno!
+php bin/console doctrine:schema:create
+//php bin/console doctrine:schema:update
+//php bin/console doctrine:schema:update --dump-sql
+//php bin/console doctrine:schema:update --force
+
+// Novi kontroler
+php bin/console make:controller PostController
+
+//php bin/console debug:router //prikazuje rute
+https://localhost:8000/post/create
+
 ⌨️ (1:49:37) Flash messages
 ⌨️ (1:52:58) Symfony bug
 ⌨️ (2:09:41) Security
