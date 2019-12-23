@@ -3,7 +3,15 @@
 {% block title %}Hello PostController!{% endblock %}
 
 {% block body %}
+    {# read and display just one flash message type #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h2>List of All posts:</h2>
+    <a href="{{ path('post.create') }}">Create</a>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -30,6 +38,8 @@
             {% endfor %}
         </tbody>
     </table>
+
+
 {% endblock %}
 
 

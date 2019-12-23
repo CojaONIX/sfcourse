@@ -75,7 +75,37 @@ php bin/console make:controller PostController
 https://localhost:8000/post/create
 
 ⌨️ (1:49:37) Flash messages
+https://symfony.com/doc/current/controller.html#flash-messages
+
+php bin/console make
+php bin/console make:form
+> PostType
+> Post
+composer require form validator // ^^^ sporo... 5-10 min da pocne
+// dodaje u src/Form fajl PostType.php
+// Kreiraj u templates/post fajl:
+// create.html.twig
+
+U config/packages/twig.yaml dodaj red (2:02:00):
+form_theme: 'bootstrap_4_layout.html.twig'
+(2:05:15)
+composer require profiler
+composer require web-profiler-bundle
+
+(2:08:15) Validacija
+U src/Entity/Post.php kucaj:
+use Constraints = pa izaberi:
+use Symfony\Component\Validator\Constraints as Assert;
+iznad: private $title; dodaj
+* @Assert\NotBlank()
+
+
 ⌨️ (1:52:58) Symfony bug
+// ako "composer require form validator" pokaze gresku dodaj
+// u composer.json ispred reda: "symfony/yaml": "5.0.*"
+"symfony/translation": "5.0.*",
+composer update
+
 ⌨️ (2:09:41) Security
 ⌨️ (2:20:16) Registration page
 ⌨️ (2:39:39) More doctrine & Relationships

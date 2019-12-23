@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,13 +42,32 @@ class PostController extends AbstractController
     public function create(Request $request)
     {
         $post = new Post();
-        $post->setTitle('Test title!');
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($post);
-        $em->flush();
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
 
-        return new Response('Post was created');
+        //za Validaciju:
+        $form->getErrors();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        //if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            //dump($post);
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('post.index'));
+        }
+
+        //$post->setTitle('Test title!');
+        //$em = $this->getDoctrine()->getManager();
+        //$em->persist($post);
+        //$em->flush();
+
+        //return new Response('Post was created');
+        return $this->render('post/create.html.twig', [
+            'form' => $form->createView()
+        ]);
 
     }
 
@@ -70,15 +90,21 @@ class PostController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="delete")
-     * @param Post $post
+     * @param $id
+     * @param PostRepository $postRepository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
 
-    public function remove(Post $post){
-        dump($post); die;
+    //public function remove(Post $post){
+    public function remove($id, PostRepository $postRepository)
+    {
+        $post = $postRepository->find($id);
+        //dump($post); die;
         $em = $this->getDoctrine()->getManager();
         $em->remove($post);
         $em->flush();
+
+        $this->addFlash('success', 'Post was removed');
 
         return $this->redirect($this->generateUrl('post.index'));
 
