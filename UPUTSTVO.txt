@@ -86,7 +86,7 @@ composer require form validator // ^^^ sporo... 5-10 min da pocne
 // Kreiraj u templates/post fajl:
 // create.html.twig
 
-U config/packages/twig.yaml dodaj red (2:02:00):
+(2:02:00) U config/packages/twig.yaml dodaj red:
 form_theme: 'bootstrap_4_layout.html.twig'
 (2:05:15)
 composer require profiler
@@ -107,7 +107,49 @@ iznad: private $title; dodaj
 composer update
 
 ⌨️ (2:09:41) Security
+php bin/console make:auth
+composer require security //^^^
+> 1
+> CustomAuthenticator
+> [enter]
+> ^C //prvo odradi make:user
+
+php bin/console make:user
+> [user]
+> [yes]
+> username
+> [yes]
+> [yes] //(2:12:49) ne izlazi pa zato u config/packages/security.yanl stoji
+algorithm: auto  umesto  algorithm: argon2i
+
+# - { path: ^/, roles: ROLE_USER } //poslefnji red izbrisi /profile
+
+https://localhost:8000/login //SignIn ne radi dok se baza ne Update
+php bin/console doctrine:schema:update --dump-sql
+php bin/console doctrine:schema:update --force
+
+2019-12-24T13:38:27+01:00 [info] User Deprecated: The Doctrine\Common\Persistence\ObjectRepository class is deprecated since doctrine/persistence 1.3 and will be removed in 2.0. Use \Doctrine\Persistence\ObjectRepository instead.
+2019-12-24T13:38:27+01:00 [info] User Deprecated: The Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory class is deprecated since doctrine/persistence 1.3 and will be removed in 2.0. Use \Doctrine\Persistence\Mapping\AbstractClassMetadataFactory instead.
+2019-12-24T13:38:27+01:00 [info] User Deprecated: The Doctrine\Common\PropertyChangedListener class is deprecated since doctrine/persistence 1.3 and will be removed in 2.0. Use \Doctrine\Persistence\PropertyChangedListener instead.
+2019-12-24T13:38:27+01:00 [info] User Deprecated: The Doctrine\Common\Persistence\Mapping\RuntimeReflectionService class is deprecated since doctrine/persistence 1.3 and will be removed in 2.0. Use \Doctrine\Persistence\Mapping\RuntimeReflectionService instead.
+2019-12-24T13:38:27+01:00 [info] User Deprecated: The Doctrine\Common\Persistence\Event\LoadClassMetadataEventArgs class is deprecated since doctrine/persistence 1.3 and will be removed in 2.0. Use \Doctrine\Persistence\Event\LoadClassMetadataEventArgs instead.
+
+
 ⌨️ (2:20:16) Registration page
+php bin/console make:controller RegistrationController
+// Odradi izmene u RegistrationController (2:20:47)
+https://symfony.com/doc/current/reference/forms/types/repeated.html //za RepeatedType Field
+// Odradi templates/registration/index.html.twig
+
+https://localhost:8000/register
+(2:31:39) U src/Security/CustomAutgenticator.php izmeni: koristeci return iz komentara iznad
+throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+izmeni i access_control:
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }
+
+
 ⌨️ (2:39:39) More doctrine & Relationships
 ⌨️ (2:40:07) File uploading
 ⌨️ (2:47:55) Defining custom parameters
