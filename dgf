@@ -1,0 +1,47 @@
+[33mcommit 129a82f07e210f72b28321ca8aac1211aa5c9032[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Tue Dec 24 22:19:46 2019 +0100
+
+    File uploading
+
+[33mcommit 8823496720398ef1d474c9ed3e2e530538e571e6[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Tue Dec 24 16:15:41 2019 +0100
+
+    RegPage
+
+[33mcommit 9b3f8f4e0c413bcbae4d88aba3f2892f31fa02d2[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Mon Dec 23 14:47:07 2019 +0100
+
+    Flash messages
+
+[33mcommit d16319cf6d1dd97066fbd3acb56132c6777c10bb[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Mon Dec 23 11:20:49 2019 +0100
+
+    Doctrine
+
+[33mcommit a8cd000674e1dee493c908567efd5a125c379c88[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Sun Dec 22 12:18:37 2019 +0100
+
+    twig-bootstrap
+
+[33mcommit efbd727acaf9b691890715f234866f3aa2002860[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Sat Dec 21 15:29:15 2019 +0100
+
+    Routes
+
+[33mcommit 069313376cc3445ae1fd59a2221437eb40304a12[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Sat Dec 21 14:24:03 2019 +0100
+
+    routing
+
+[33mcommit 6ae077f891daacc4ceb7482d46da0f3c8ca1b8d1[m
+Author: CojaONIX <cojaonix@gmail.com>
+Date:   Sat Dec 21 11:43:26 2019 +0100
+
+    init

@@ -166,8 +166,7 @@ U src/Form/PostType.php dodaj:
                 'mapped' => false
             ])
 
-
-⌨️ (2:47:55) Defining custom parameters
+//⌨️ (2:47:55) Defining custom parameters
 U config/services.yaml dodaj
 parameters:
     uploads_dir: '%kernel.project_dir%/public/uploads'
@@ -181,9 +180,72 @@ U templates/post/show.html.twig dodaj:
 
 
 ⌨️ (2:53:23) Doctrine relationship
+php bin/console make:entity Category
+> name
+> [enter]
+> [enter]
+> [enter]
+> [enter]
 
+U src/Entity/Post.php dodaj:
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="post")
+     */
+    private $category;
+
+U src/Entity/Category.php dodaj:
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="category")
+     */
+    private $post;
+
+php bin/console make:entity --regenerate
+> [enter]
+
+U src/Form/PostType.php dodaj:
+            ->add('category', EntityType::class, [
+                'class' => Category::class
+            ])
+
+php bin/console doctrine:schema:update --force
+
+Ubaci nekoliko kategorija u phpMyAdmin
+
+U src/Entity/Category.php dodaj:
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+U templates/post/show.html.twig dodaj:
+    <em>{{ post.category }}</em>
+    <hr />
+
+https://localhost:8000/post/create
 
 ⌨️ (3:03:35) QueryBuilder
+U src/Repository/PostRepository.php dodaj:
+    public function findPostWithCategory(int $id)
+    {
+            $qb = $this->createQueryBuilder('p');
+            $qb->select('p.title')
+                ->addSelect('p.id AS post_id')
+                ->addSelect('c.name')
+                ->addSelect('c.id AS cat_id')
+                ->innerJoin('p.category', 'c')
+                ->where('p.id = :id')
+                ->setParameter('id', $id)
+            ;
+
+            return $qb->getQuery()->getResult();
+    }
+
+
+U PostController.php dodaj:
+$post = $postRepository->findPostWithCategory($id);
+radi samo do:
+dump($post);
+
 ⌨️ (3:11:49) Services
 
 
