@@ -152,8 +152,37 @@ izmeni i access_control:
 
 ⌨️ (2:39:39) More doctrine & Relationships
 ⌨️ (2:40:07) File uploading
+U src/Entity/Post.php dodaj:
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $image;
+
+php bin/console make:entity --regenerate
+> [enter]
+
+U src/Form/PostType.php dodaj:
+            ->add('attachment', FileType::class, [
+                'mapped' => false
+            ])
+
+
 ⌨️ (2:47:55) Defining custom parameters
+U config/services.yaml dodaj
+parameters:
+    uploads_dir: '%kernel.project_dir%/public/uploads'
+
+U PostController dodaj stavke kod komentara //File uploading
+
+php bin/console doctrine:schema:update --force
+
+U templates/post/show.html.twig dodaj:
+<img src="{{ '/uploads/' ~ post.image }}" alt="">
+
+
 ⌨️ (2:53:23) Doctrine relationship
+
+
 ⌨️ (3:03:35) QueryBuilder
 ⌨️ (3:11:49) Services
 
