@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
@@ -87,34 +88,26 @@ class PostController extends AbstractController
 
     /**
      * @Route("/show/{id}", name="show")
-     * @param $id
-     * @param PostRepository $postRepository
+     * @param Post $post
      * @return Response
      */
-    //public function show(Post $post) //nece 1:42:30
-    public function show($id, PostRepository $postRepository)
+    public function show(Post $post)
     {
-        $post = $postRepository->find($id);
         //$post = $postRepository->findPostWithCategory($id);
         //dump($post);
         return $this->render('post/show.html.twig', [
             'post' => $post
         ]);
-
     }
 
     /**
      * @Route("/delete/{id}", name="delete")
-     * @param $id
-     * @param PostRepository $postRepository
+     * @param Post $post
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
 
-    //public function remove(Post $post){
-    public function remove($id, PostRepository $postRepository)
+    public function remove(Post $post)
     {
-        $post = $postRepository->find($id);
-        //dump($post); die;
         $em = $this->getDoctrine()->getManager();
         $em->remove($post);
         $em->flush();
@@ -122,6 +115,50 @@ class PostController extends AbstractController
         $this->addFlash('success', 'Post was removed');
 
         return $this->redirect($this->generateUrl('post.index'));
+    }
+
+
+    /**
+     * @Route ("/update/{id}", name="update")
+     * methods={"GET","POST"}
+     * @param Request $request
+     * @param Post $post
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+
+    public function update( Request $request, Post $post)
+    {
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        dump($post);
+
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+
+
+            //File uploading
+            /** @var UploadedFile $file */
+            $file = $request->files->get('post')['attachment'];
+            if ($file) {
+                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+
+                $file->move(
+                    $this->getParameter('uploads_dir'),
+                    $filename
+                );
+
+                $post->setImage($filename);
+                $em->flush();
+            }
+
+            return $this->redirect($this->generateUrl('post.index'));
+        }
+
+        return $this->render('post/update.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+
 
     }
 }

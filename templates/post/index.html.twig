@@ -16,6 +16,8 @@
         <thead>
             <tr>
                 <td>ID</td>
+                <td>KatID</td>
+                <td>Image</td>
                 <td>Title</td>
                 <td>Actions</td>
             </tr>
@@ -24,12 +26,17 @@
             {% for post in posts %}
                 <tr>
                     <td>{{ post.id }}</td>
+                    <td>{{ post.category }}</td>
+                    <td>{{ post.image }}</td>
                     <td>
                         <a href="{{ path('post.show', {id: post.id}) }}">
                             {{ post.title }}
                         </a>
                     </td>
                     <td>
+                        <a href="{{ path('post.update', {id: post.id}) }}">
+                            Edit
+                        </a>
                         <a class="text-danger" href="{{ path('post.delete', {id: post.id}) }}">
                             Delete
                         </a>

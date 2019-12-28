@@ -33,7 +33,7 @@ class MainController extends AbstractController
      */
     public function custom(Request $request) {
         //dump($request);
-        //dump($request->get( 'name'));
+        dump($request->get( 'name'));
         $name = $request->get( 'name');
 
         // twig
@@ -42,6 +42,6 @@ class MainController extends AbstractController
         ]);
 
         //http://localhost/sfcourse/public/index.php/custom
-        return new Response('<h1>Welcome ' . $name .'! </h1>');
+        //return new Response('<h1>Welcome ' . $name .'! </h1>');
     }
 }

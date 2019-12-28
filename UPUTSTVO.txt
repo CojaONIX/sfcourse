@@ -122,7 +122,8 @@ php bin/console make:user
 > [yes] //(2:12:49) ne izlazi pa zato u config/packages/security.yanl stoji
 algorithm: auto  umesto  algorithm: argon2i
 
-# - { path: ^/, roles: ROLE_USER } //poslefnji red izbrisi /profile
+U config/security.yaml poslednji red:
+# - { path: ^/post, roles: ROLE_USER } //putanja koja se autentifikuje
 
 https://localhost:8000/login //SignIn ne radi dok se baza ne Update
 php bin/console doctrine:schema:update --dump-sql

@@ -5,7 +5,7 @@
 {% block body %}
     <h2>{{ post.id }}</h2>
     <h1>{{ post.title }}</h1>
-    <em>{{ post.category.id }} -- {{ post.category }}</em>
+    <em>Kategorija: {{ post.category }}</em>
     <hr />
     <img src="{{ '/uploads/' ~ post.image }}" alt="">
 {% endblock %}
