@@ -130,7 +130,7 @@ class PostController extends AbstractController
     {
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-        dump($post);
+        //dump($post);
 
         if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();

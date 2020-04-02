@@ -63,6 +63,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root' WITH GRAN
 
 // Kreiranje tabele
 php bin/console make:entity //prati ponudjeno!
+
+//Ako su src/Entity vec kreirani ili update:
 php bin/console doctrine:schema:create
 //php bin/console doctrine:schema:update
 //php bin/console doctrine:schema:update --dump-sql
@@ -142,7 +144,9 @@ php bin/console make:controller RegistrationController
 https://symfony.com/doc/current/reference/forms/types/repeated.html //za RepeatedType Field
 // Odradi templates/registration/index.html.twig
 
-https://localhost:8000/register
+// !!! BITNO:
+https://localhost:8000/register //Dodavanje novog admina u sfcourse/user
+
 (2:31:39) U src/Security/CustomAutgenticator.php izmeni: koristeci return iz komentara iznad
 throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
 izmeni i access_control:

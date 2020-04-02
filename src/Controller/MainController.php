@@ -33,7 +33,7 @@ class MainController extends AbstractController
      */
     public function custom(Request $request) {
         //dump($request);
-        dump($request->get( 'name'));
+        //dump($request->get( 'name'));
         $name = $request->get( 'name');
 
         // twig
